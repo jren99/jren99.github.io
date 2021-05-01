@@ -19,7 +19,7 @@ In all the math below:
 
 ## Introduction
 
-In this problem, we'll study *spectral clustering*. Spectral clustering is an important tool for identifying meaningful parts of data sets with complex structure. To start, let's look at an example where we *don't* need spectral clustering. 
+*Clustering* refers to the task of separating this data set into the two natural "blobs." K-means is a very common way to achieve this task．Recall that k-means algorithm partitions observations by minimizing the within-cluster sum of squares. This algorithm works effectively in many cases，especially on circular-ish blobs, for example:
 
 
 ```python
@@ -49,9 +49,6 @@ plt.scatter(X[:,0], X[:,1])
     
 
 
-*Clustering* refers to the task of separating this data set into the two natural "blobs." K-means is a very common way to achieve this task, which has good performance on circular-ish blobs like these: 
-
-
 ```python
 from sklearn.cluster import KMeans
 km = KMeans(n_clusters = 2)
@@ -75,7 +72,7 @@ plt.scatter(X[:,0], X[:,1], c = km.predict(X))
 
 ### Harder Clustering
 
-That was all well and good, but what if our data is "shaped weird"? 
+However, when our data is "shaped weird", k-means clustering might not work so well. We'll see this through the following example. 
 
 
 ```python
@@ -122,15 +119,18 @@ plt.scatter(X[:,0], X[:,1], c = km.predict(X))
 
 Whoops! That's not right! 
 
+To resolve this problem, we'll study *spectral clustering*. Spectral clustering is an important tool for identifying meaningful parts of data sets with complex structure. 
 As we'll see, spectral clustering is able to correctly cluster the two crescents. In the following problems, you will derive and implement spectral clustering. 
 
 ## Part A
 
-Construct the *similarity matrix* $$\mathbf{A}$$. $$\mathbf{A}$$ should be a matrix (2d `np.ndarray`) with shape `(n, n)` (recall that `n` is the number of data points). 
+In multivariate statistics, spectral clustering techniques make use of the spectrum (eigenvalues) of the similarity matrix of the data to perform dimensionality reduction before clustering in fewer dimensions. The similarity matrix is provided as an input and consists of a quantitative assessment of the relative similarity of each pair of points in the dataset.
 
-When constructing the similarity matrix, use a parameter `epsilon`. Entry `A[i,j]` should be equal to `1` if `X[i]` (the coordinates of data point `i`) is within distance `epsilon` of `X[j]` (the coordinates of data point `j`). 
+So, let's construct the *similarity matrix* $$\mathbf{A}$$. $$\mathbf{A}$$ should be a matrix (2d `np.ndarray`) with shape `(n, n)` (recall that `n` is the number of data points). 
 
-**The diagonal entries `A[i,i]` should all be equal to zero.** The function `np.fill_diagonal()` is a good way to set the values of the diagonal of a matrix.  
+When constructing the similarity matrix, we'll use a parameter `epsilon`. Entry `A[i,j]` should be equal to `1` if `X[i]` (the coordinates of data point `i`) is within distance `epsilon` of `X[j]` (the coordinates of data point `j`), else it should be `0`.
+
+**The diagonal entries `A[i,i]` should all be equal to zero.** 
 
 
 
@@ -229,7 +229,7 @@ Synthesizing, the binary normcut objective asks us to find clusters $$C_0$$ and 
 1. There are relatively few entries of $$\mathbf{A}$$ that join $$C_0$$ and $$C_1$$. 
 2. Neither $$C_0$$ and $$C_1$$ are too small. 
 
-Write a function called `vols(A,y)` which computes the volumes of $C_0$ and $C_1$, returning them as a tuple. For example, `v0, v1 = vols(A,y)` should result in `v0` holding the volume of cluster `0` and `v1` holding the volume of cluster `1`. Then, write a function called `normcut(A,y)` which uses `cut(A,y)` and `vols(A,y)` to compute the binary normalized cut objective of a matrix `A` with clustering vector `y`. 
+We'll write a function called `vols(A,y)` which computes the volumes of $$C_0$$ and $$C_1$$, returning them as a tuple. For example, `v0, v1 = vols(A,y)` should result in `v0` holding the volume of cluster `0` and `v1` holding the volume of cluster `1`. Then, write a function called `normcut(A,y)` which uses `cut(A,y)` and `vols(A,y)` to compute the binary normalized cut objective of a matrix `A` with clustering vector `y`. 
 
 
 
@@ -453,7 +453,7 @@ In fact, `z_eig` should be proportional to `z_min`, although this won't be exact
 
 ## Part G
 
-Synthesize your results from the previous parts. In particular, write a function called `spectral_clustering(X, epsilon)` which takes in the input data `X` (in the same format as Part A) and the distance threshold `epsilon` and performs spectral clustering, returning an array of binary labels indicating whether data point `i` is in group `0` or group `1`. Demonstrate your function using the supplied data from the beginning of the problem. 
+Now, Synthesize our results from the previous parts. In particular, write a function called `spectral_clustering(X, epsilon)` which takes in the input data `X` (in the same format as Part A) and the distance threshold `epsilon` and performs spectral clustering, returning an array of binary labels indicating whether data point `i` is in group `0` or group `1`. Demonstrate your function using the supplied data from the beginning of the problem. 
 
 #### Outline
 
@@ -577,7 +577,7 @@ plt.scatter(X_test2[:,0], X_test2[:,1], c = label)
     
 
 
-Well, it looks like our function doesn't work so well for `noise = 0.
+Well, it looks like our function doesn't work so well for `noise = 0`.
 
 ## Part I
 
@@ -625,7 +625,7 @@ plt.scatter(X[:,0], X[:,1], c = km.predict(X))
     
 
 
-Can your function successfully separate the two circles? Some experimentation here with the value of `epsilon` is likely to be required. Try values of `epsilon` between `0` and `1.0` and describe your findings. For roughly what values of `epsilon` are you able to correctly separate the two rings? 
+Can our function successfully separate the two circles? 
 
 
 ```python
