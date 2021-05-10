@@ -186,19 +186,21 @@ In the block below, we will write a function called `cut(A,y)` to compute the cu
 
 ```python
 def cut(A,y):
-    # gather the indices for which y == 1 in C1
-    # and y == 0 in C0
-    C1 = [i for i in range(len(y)) if y[i] == 1]
-    C0 = [i for i in range(len(y)) if y[i] != 1]
-    
     sum_cluster = 0
     
-    for i in C0:
-        for j in C1:
-            sum_cluster += A[i][j]
+    for i in range(len(y)):
+        for j in range(len(y)):
+            if y[i] != y[j]: 
+                sum_cluster += A[i][j]
     return(sum_cluster)
 ```
+{::options parse_block_html="true" /}
+<div class="got-help">
+I learned from my peer feedback that I can write my `cut()` without listing the indices that are in $$C_0$$ and $$C_1$$.
+```
+</div>
 
+{::options parse_block_html="false" /}
 Compute the cut objective for the true clusters `y`. Then, generate a random vector of random labels of length `n`, with each label equal to either 0 or 1. Check the cut objective for the random labels. You should find that the cut objective for the true labels is *much* smaller than the cut objective for the random labels. 
 
 This shows that this part of the cut objective indeed favors the true clusters over the random ones. 
@@ -314,7 +316,7 @@ v = A.sum(axis = 1)
 # row sum as the diagonal entries
 D = np.diag(v)
 
-np.isclose(normcut(A,y),z.T@(D-A)@z/(z.T@D@z))
+np.isclose(normcut(A,y),2*z.T@(D-A)@z/(z.T@D@z))
 ```
 
 
