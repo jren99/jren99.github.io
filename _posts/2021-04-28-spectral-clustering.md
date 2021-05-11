@@ -7,6 +7,7 @@ In this blog post, we will learn to partition graphs by spectral decomposition.
 
 # Blog Post 2: Spectral Clustering
 
+In this blog, we will use the notation below for math expressions. 
 
 ### Notation
 
@@ -19,7 +20,7 @@ In all the math below:
 
 ## Introduction
 
-*Clustering* refers to the task of separating this data set into the two natural "blobs." K-means is a very common way to achieve this task．Recall that k-means algorithm partitions observations by minimizing the within-cluster sum of squares. This algorithm works effectively in many cases，especially on circular-ish blobs, for example:
+*Clustering* refers to the task of separating this data set into the two natural "blobs." K-means is a very common way to achieve this task．Recall that k-means algorithm partitions observations by minimizing the within-cluster sum of squares. This algorithm works effectively in many cases, especially on circular-ish blobs, for example:
 
 
 ```python
@@ -47,7 +48,7 @@ plt.scatter(X[:,0], X[:,1])
     
 ![png](/images/output_2_1.png)
     
-
+Now we have two circular-ish blobs that have clear separation. In situations like this, K-means algorithm can easily determine the clusters. 
 
 ```python
 from sklearn.cluster import KMeans
@@ -68,11 +69,11 @@ plt.scatter(X[:,0], X[:,1], c = km.predict(X))
     
 ![png](/images/output_4_1.png)
     
-
+Now two clusters are colorred differently by K-means algorithm. As we can see, this gives us the correct clusters.
 
 ### Harder Clustering
 
-However, when our data is "shaped weird", k-means clustering might not work so well. We'll see this through the following example. 
+However, when our data is "shaped weird", k-means clustering might not work so well. In the following example, we will create clusters that are shaped as crescents using `make_moons()` function from module `datasets`. 
 
 
 ```python
@@ -117,12 +118,12 @@ plt.scatter(X[:,0], X[:,1], c = km.predict(X))
     
 
 
-Whoops! That's not right! 
+Whoops! That's not right! K-means algorithm is not sufficient to correctly cluster our data in this case. 
 
-To resolve this problem, we'll study *spectral clustering*. Spectral clustering is an important tool for identifying meaningful parts of data sets with complex structure. 
-As we'll see, spectral clustering is able to correctly cluster the two crescents. In the following problems, you will derive and implement spectral clustering. 
+To resolve this problem, we'll study *spectral clustering*, an important tool for identifying meaningful parts of data sets with complex structure. 
+As we'll see, spectral clustering is able to correctly cluster the two crescents. We will derive and implement spectral clustering in the following section. 
 
-## Part A
+## Part A: Similarity Matrix
 
 In multivariate statistics, spectral clustering techniques make use of the spectrum (eigenvalues) of the similarity matrix of the data to perform dimensionality reduction before clustering in fewer dimensions. The similarity matrix is provided as an input and consists of a quantitative assessment of the relative similarity of each pair of points in the dataset.
 
@@ -132,7 +133,7 @@ When constructing the similarity matrix, we'll use a parameter `epsilon`. Entry 
 
 **The diagonal entries `A[i,i]` should all be equal to zero.** 
 
-
+`euclidean_distance()` is a nice function from `sklearn.metrics.pairwise` package that can help us easily compute the pairwise distance of a matrix.
 
 ```python
 from sklearn.metrics.pairwise import euclidean_distances
@@ -160,7 +161,7 @@ A
 
 
 
-## Part B
+## Part B: Partition
 
 The matrix `A` now contains information about which points are near (within distance `epsilon`) which other points. We now pose the task of clustering the data points in `X` as the task of partitioning the rows and columns of `A`. 
 
@@ -184,23 +185,26 @@ First, the cut term $$\mathbf{cut}(C_0, C_1)$$ is the number of nonzero entries 
 In the block below, we will write a function called `cut(A,y)` to compute the cut term by summing up the entries `A[i,j]` for each pair of points `(i,j)` in different clusters. 
 
 
+<div class="got-help">
+I learned from my peer feedback that I can write my `cut()` without listing the indices that are in C0 and C1.
+
+</div>
+
+
 ```python
 def cut(A,y):
     sum_cluster = 0
     
     for i in range(len(y)):
-        for j in range(len(y)):
-            if y[i] != y[j]: 
+        for j in range(len(y)): 
+            if y[i] != y[j]: # add all entries of A that has same corresponding y value
                 sum_cluster += A[i][j]
     return(sum_cluster)
 ```
-{::options parse_block_html="true" /}
-<div class="got-help">
-I learned from my peer feedback that I can write my `cut()` without listing the indices that are in $$C_0$$ and $$C_1$$.
-```
-</div>
 
-{::options parse_block_html="false" /}
+
+
+
 Compute the cut objective for the true clusters `y`. Then, generate a random vector of random labels of length `n`, with each label equal to either 0 or 1. Check the cut objective for the random labels. You should find that the cut objective for the true labels is *much* smaller than the cut objective for the random labels. 
 
 This shows that this part of the cut objective indeed favors the true clusters over the random ones. 
@@ -208,15 +212,15 @@ This shows that this part of the cut objective indeed favors the true clusters o
 
 ```python
 temp = np.random.randint(2,size = n)
-true = cut(A,y)
-rand = cut(A,temp)
-(true,rand)
+actual = cut(A,y) # the true clusters 
+rand = cut(A,temp) # the randdom clusters
+(actual,rand)
 ```
 
 
 
 
-    (13, 1150)
+    (26, 2300)
 
 
 
@@ -258,13 +262,13 @@ Now, compare the `normcut` objective using both the true labels `y` and the fake
 
 
 
-    (0.011518412331615225, 1.0240023597759158)
+    (0.02303682466323045, 2.0480047195518316)
 
 
 
 The true labels are much smaller.
 
-## Part C
+## Part C Transformation
 
 We have now defined a normalized cut objective which takes small values when the input clusters are (a) joined by relatively few entries in $$A$$ and (b) not too small. One approach to clustering is to try to find a cluster vector `y` such that `normcut(A,y)` is small. However, this is an NP-hard combinatorial optimization problem, which means that may not be possible to find the best clustering in practical time, even for relatively small data sets. We need a math trick! 
 
@@ -299,7 +303,7 @@ The equation above is exact, but computer arithmetic is not! `np.isclose(a,b)` i
 
 
 ```python
-# 1
+# compute vector z
 def transform(A,y):
     (v0,v1) = vols(A,y)
     # entries in z is 1/v0 when y==0, else is -1/v1
@@ -309,7 +313,7 @@ def transform(A,y):
 
 
 ```python
-# 2
+# check if the two approaches are equivalent
 z = transform(A,y)
 # compute the row sum
 v = A.sum(axis = 1)
@@ -328,7 +332,7 @@ np.isclose(normcut(A,y),2*z.T@(D-A)@z/(z.T@D@z))
 
 
 ```python
-# 3
+# verify if z is evenly distributed between positive and negative entries
 np.isclose(0,z.T@D@np.ones(n))
 ```
 
@@ -339,7 +343,7 @@ np.isclose(0,z.T@D@np.ones(n))
 
 
 
-## Part D
+## Part D: Minimization
 
 In the last part, we saw that the problem of minimizing the normcut objective is mathematically related to the problem of minimizing the function 
 
@@ -347,7 +351,7 @@ $$ R_\mathbf{A}(\mathbf{z})\equiv \frac{\mathbf{z}^T (\mathbf{D} - \mathbf{A})\m
 
 subject to the condition $$\mathbf{z}^T\mathbf{D}\mathbb{1} = 0$$. It's actually possible to bake this condition into the optimization, by substituting for $$\mathbf{z}$$ the orthogonal complement of $$\mathbf{z}$$ relative to $$\mathbf{D}\mathbf{1}$$. In the code below, I define an `orth_obj` function which handles this for you. 
 
-Use the `minimize` function from `scipy.optimize` to minimize the function `orth_obj` with respect to $$\mathbf{z}$$. Note that this computation might take a little while. Explicit optimization can be pretty slow! Give the minimizing vector a name `z_`. 
+Use the `minimize` function from `scipy.optimize` to minimize the function `orth_obj` with respect to $$\mathbf{z}$$. Note that this computation might take a little while. Explicit optimization can be pretty slow! Give the minimizing vector a name `z_min`. 
 
 
 ```python
@@ -371,7 +375,7 @@ z_min = scipy.optimize.minimize(orth_obj,np.random.rand(n)).x
 
 **Note**: there's a cheat going on here! We originally specified that the entries of $$\mathbf{z}$$ should take only one of two values (back in Part C), whereas now we're allowing the entries to have *any* value! This means that we are no longer exactly optimizing the normcut objective, but rather an approximation. This cheat is so common that deserves a name: it is called the *continuous relaxation* of the normcut problem. 
 
-## Part E
+## Part E: Results
 
 Recall that, by design, only the sign of `z_min[i]` actually contains information about the cluster label of data point `i`. Plot the original data, using one color for points such that `z_min[i] < 0` and another color for points such that `z_min[i] >= 0`. 
 
@@ -398,7 +402,7 @@ plt.scatter(X[:,0], X[:,1], c = color)
 
 We are very close to correctly clustering the data!
 
-## Part F
+## Part F: Fast Algorithm
 
 Explicitly optimizing the orthogonal objective is  *way* too slow to be practical. If spectral clustering required that we do this each time, no one would use it. 
 
@@ -453,7 +457,7 @@ plt.scatter(X[:,0], X[:,1], c = np.sign(z_eig))
 
 In fact, `z_eig` should be proportional to `z_min`, although this won't be exact because minimization has limited precision by default.Inspecting the scatterplot, `z_eig` gives us a really good estimation of clustering!
 
-## Part G
+## Part G: Summary
 
 Now, Synthesize our results from the previous parts. In particular, write a function called `spectral_clustering(X, epsilon)` which takes in the input data `X` (in the same format as Part A) and the distance threshold `epsilon` and performs spectral clustering, returning an array of binary labels indicating whether data point `i` is in group `0` or group `1`. Demonstrate your function using the supplied data from the beginning of the problem. 
 
@@ -533,7 +537,7 @@ plt.scatter(X[:,0], X[:,1], c = spectral_clustering(X, epsilon))
 
 It looks like our function works! But let's try a few more different instances.
 
-## Part H
+## Part H: Exploring Parameter Noise
 
 Run a few experiments using your function, by generating different data sets using `make_moons`. What happens when you increase the `noise`? Does spectral clustering still find the two half-moon clusters? For these experiments, you may find it useful to increase `n` to `1000` or so -- we can do this now, because of our fast algorithm! 
 
@@ -581,7 +585,7 @@ plt.scatter(X_test2[:,0], X_test2[:,1], c = label)
 
 Well, it looks like our function doesn't work so well for `noise = 0`.
 
-## Part I
+## Part I: Extension
 
 Now try your spectral clustering function on another data set -- the bull's eye! 
 
@@ -647,6 +651,52 @@ plt.scatter(X[:,0], X[:,1], c = label)
     
 ![png](/images/output_52_1.png)
     
+<div class="got-help">
+I was suggested by my peers that I can check other epsilon values to see how well the function performs.
 
+</div>
 
 Isn't this just amazing! Our function also correctly clustered two circles. 
+What about larger epsilon values?
+
+
+```python
+epsilon = 0.5
+label = spectral_clustering(X, epsilon)
+plt.scatter(X[:,0], X[:,1], c = label)
+```
+
+
+
+
+    <matplotlib.collections.PathCollection at 0x2dae7b85df0>
+
+
+
+
+    
+![png](/images/output_55_1.png)
+    
+
+
+
+```python
+epsilon = 0.6
+label = spectral_clustering(X, epsilon)
+plt.scatter(X[:,0], X[:,1], c = label)
+```
+
+
+
+
+    <matplotlib.collections.PathCollection at 0x2dae7bea5e0>
+
+
+
+
+    
+![png](/images/output_56_1.png)
+    
+
+
+Our function can still correctly distinguish two rings when `epsilon = 0.5`, but when `epsilon = 0.6`, our function fails. Hence, wisely selecting the range of `epsilon` is essential for effective clustering. 
