@@ -159,7 +159,9 @@ A
            [0, 0, 1, ..., 1, 0, 1],
            [0, 0, 0, ..., 1, 1, 0]])
 
-
+<div class="gave-help">
+I suggested one of my peers a more efficient way to coerce a boolean matrix to an integer one. 
+</div>
 
 ## Part B: Partition
 
@@ -310,7 +312,9 @@ def transform(A,y):
     z = 1/v0*(y == 0)-1/v1*(y == 1)
     return(z)
 ```
-
+<div class="gave-help">
+I suggested one of my peers to define transform() more concisely by computing vector z using boolean conditions. 
+</div>
 
 ```python
 # check if the two approaches are equivalent
@@ -700,3 +704,8 @@ plt.scatter(X[:,0], X[:,1], c = label)
 
 
 Our function can still correctly distinguish two rings when `epsilon = 0.5`, but when `epsilon = 0.6`, our function fails. Hence, wisely selecting the range of `epsilon` is essential for effective clustering. 
+
+<div class="got-help">
+I added more explanations based on peers' feedback! 
+
+</div>
