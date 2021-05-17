@@ -48,7 +48,7 @@ import plotly.io as pio
 pio.templates.default = "plotly_white"
 ```
 
-##§1. Acquire Training Data 
+## §1. Acquire Training Data 
 
 
 
@@ -131,7 +131,7 @@ df.head()
 
 As we can see, there are three important columns in this dataset, `title`, `text`, and `fake`. In the fake column, the data is already encoded to 0 (not fake news) and 1 (fake news), so we don't need to encode this column anymore. 
 
-##§2. Make TensorFlow Datasets
+## §2. Make TensorFlow Datasets
 
 TensorFlow Dataset has a special `Dataset` class that's easy to organize when writing data pipelines.
 
@@ -216,7 +216,7 @@ len(train), len(val)
 
 We have 180 batches in training set and 45 batches in validation set, which is exactly 0.8 : 0.2. We have successfully split the data into training and validation sets.
 
-##§3. Create Models
+## §3. Create Models
 
 As there are two potential predictors, there are three different potential models: model that focus on only the title of the article, the full text of the article, and both.
 
@@ -516,7 +516,7 @@ plt.plot(history.history["val_accuracy"])
 
 
     
-![png](/images/blog3output_35_1.png)
+![png](/images/blo3output_35_1.png)
     
 
 
@@ -862,7 +862,7 @@ plt.plot(history.history["val_accuracy"])
 
 Model 3 is able to consistently reach a validation performance of 99% by the training log and plot. Hence, we pick Model 3 to be our final model, i.e. the model that focuses on both the `text` and `title`. 
 
-##§4. Model Evaluation
+## §4. Model Evaluation
 
 From last section, our best model focuses only on the `text`. Now let's test this model's performance on unseen test data. 
 
@@ -894,7 +894,7 @@ model3.evaluate(test)
 
 The accuracy is 99%! We have created a pretty good fake news detector. 
 
-##§5. Visualizing Embeddings
+## §5. Visualizing Embeddings
 
 We can take a step further to learn about which words are learned by our model to be good indicators of fake news by visualizing embeddings.
 
