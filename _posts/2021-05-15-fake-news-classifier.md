@@ -1,4 +1,7 @@
-# **Blog Post 3**
+---
+layout: post
+title: Blog Post 3
+---
 
 With the rapid development of technology, we are exposed to large amount of all kinds of information all the time. Our generation knows that how difficult it is to extract effective information because of all the "fake" news. Wouldn't it be nice if we can create an algorithm that helps us detect fake news?
 
@@ -364,7 +367,7 @@ keras.utils.plot_model(model1)
 
 
     
-![png](output_32_0.png)
+![png](/images/output_32_0.png)
     
 
 
@@ -512,7 +515,7 @@ plt.plot(history.history["val_accuracy"])
 
 
     
-![png](output_35_1.png)
+![png](/images/blog3output_35_1.png)
     
 
 
@@ -539,7 +542,7 @@ keras.utils.plot_model(model2)
 
 
     
-![png](output_39_0.png)
+![png](/images/output_39_0.png)
     
 
 
@@ -686,7 +689,7 @@ plt.plot(history.history["val_accuracy"])
 
 
     
-![png](output_42_1.png)
+![png](/images/output_42_1.png)
     
 
 
@@ -713,7 +716,7 @@ keras.utils.plot_model(model3)
 
 
     
-![png](output_46_0.png)
+![png](/images/output_46_0.png)
     
 
 
@@ -852,7 +855,7 @@ plt.plot(history.history["val_accuracy"])
 
 
     
-![png](output_49_1.png)
+![png](/images/output_49_1.png)
     
 
 
