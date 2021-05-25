@@ -46,7 +46,7 @@ import plotly.io as pio
 pio.templates.default = "plotly_white"
 ```
 
-##§1. Acquire Training Data 
+## §1. Acquire Training Data 
 
 
 
@@ -129,7 +129,7 @@ df.head()
 
 As we can see, there are three important columns in this dataset, `title`, `text`, and `fake`. In the fake column, the data is already encoded to 0 (not fake news) and 1 (fake news), so we don't need to encode this column anymore. 
 
-##§2. Make TensorFlow Datasets
+## §2. Make TensorFlow Datasets
 
 TensorFlow Dataset has a special `Dataset` class that's easy to organize when writing data pipelines.
 
@@ -147,8 +147,11 @@ stop = stopwords.words('english')
     [nltk_data] Downloading package stopwords to /root/nltk_data...
     [nltk_data]   Package stopwords is already up-to-date!
     
-
+<div class="got-help">
 I received feedback from my peers to remove the inputs as the input of the function.
+
+</div>
+
 
 
 ```python
@@ -195,8 +198,10 @@ Next, we'll split the dataset into training and validation sets. We want 20% of 
 # shuffle data 
 data = data.shuffle(buffer_size = len(data))
 ```
-
+<div class="gave-help">
 I suggested my peer to use skip function to split train-val data.
+</div>
+
 
 
 ```python
@@ -223,7 +228,7 @@ len(train), len(val)
 
 We have 180 batches in training set and 45 batches in validation set, which is exactly 0.8 : 0.2. We have successfully split the data into training and validation sets.
 
-##§3. Create Models
+## §3. Create Models
 
 As there are two potential predictors, there are three different potential models: model that focus on only the title of the article, the full text of the article, and both.
 
@@ -354,9 +359,10 @@ output = layers.Dense(2, name = "fake")(main)
 
 It's time to create our models! We can do so by specifying the input(s) and output. The `plot_model` function provides an easy way to visually examine the structure of our model, so it's nice to take a look. After compile our model, we can start training it.
 
+<div class="got-help">
 I was advised by my peer to write a function to train three models. I think this will greatly increase my writing efficiency. 
 
-
+</div>
 ```python
 def train_model(input, output):
   '''
@@ -561,7 +567,7 @@ round(max(model3_history.history["val_accuracy"]), 4)
 
 Model 3 is able to consistently reach a validation performance of 99% by the training log and plot. Hence, we pick Model 3 to be our final model, i.e. the model that focuses on both the `text` and `title`. 
 
-##§4. Model Evaluation
+## §4. Model Evaluation
 
 From last section, our best model focuses only on the `text`. Now let's test this model's performance on unseen test data. 
 
@@ -593,7 +599,7 @@ model3.evaluate(test)
 
 The accuracy is 99%! We have created a pretty good fake news detector. 
 
-##§5. Visualizing Embeddings
+## §5. Visualizing Embeddings
 
 We can take a step further to learn about which words are learned by our model to be good indicators of fake news by visualizing embeddings.
 
