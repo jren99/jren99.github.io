@@ -263,7 +263,7 @@ def standardization(input_data):
 
 *vectorization*
 
-Next, we want to represent text as a vector. 
+Next, we want to represent text as a vector. To be specific, we replace each word in the text with its frequency rank.
 
 
 ```python
