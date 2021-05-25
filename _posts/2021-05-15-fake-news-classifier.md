@@ -423,12 +423,12 @@ model1, model1_history = train_model(title_input, title_output)
     
 
 
-
-```python
-
 <div class="gave-help">
 I suggested my peer add diagrams to help readers gain a better understanding of how models work.
 </div>
+
+```python
+
 
 # check the structure of model 1
 keras.utils.plot_model(model1)
