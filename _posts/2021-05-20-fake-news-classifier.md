@@ -183,7 +183,9 @@ def make_dataset(df):
   return data
 
 ```
-
+<div class="gave-help">
+I suggested my peer to use apply functio instead of using for-loop to remove stopwords to increase efficiency.
+</div>
 Now, we use the function we just wrote to construct our `Dataset`.
 
 
@@ -423,6 +425,11 @@ model1, model1_history = train_model(title_input, title_output)
 
 
 ```python
+
+<div class="gave-help">
+I suggested my peer add diagrams to help readers gain a better understanding of how models work.
+</div>
+
 # check the structure of model 1
 keras.utils.plot_model(model1)
 ```
