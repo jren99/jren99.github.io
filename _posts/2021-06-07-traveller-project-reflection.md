@@ -3,8 +3,6 @@ layout: post
 title: Blog Post 4
 ---
 
-What are two aspects of your project that you are especially proud of? 
-
 What are two things you would suggest doing to further improve your project? (You are not responsible for doing those things.) 
 
 How does what you achieved compare to what you set out to do in your proposal? (if you didn't complete everything in your proposal, that's fine!)
@@ -25,17 +23,25 @@ For example, under "Restaurant Recommendations", users can either enter the type
 
 ![png](/images/food.png)
 
-For the "Plan Your Trip!" section, users can generate a customized travel plan based on their inputs, including a plan summary and maps for each day.
+For the "Plan Your Trip!" section, users can generate a customized travel plan based on their inputs.
 
 ![png](/images/plan.png)
+
+After entering the places, duration, hotel, transportation information, the generator will generates a plan summary and maps for each day.
+
 ![png](/images/step2.png)
+
+Users can click on each day to see the corresponding map.
+
 ![png](/images/step3.png)
 
 For more details, please refer to the project [repo](https://github.com/jren99/pic16b_project). 
 
 ### Highlights 
 
-This project has been a wild journey. We came up with a proposal that none of us knew how to make it come true but eventually completed something that none of us ever thought we were able to do. 
+This project has been a wild journey. We came up with a proposal that none of us knew how to make it come true but eventually completed something that none of us ever thought we were able to do. The first thing I'm the most proud of our project is the route generator. It was the first thing we accomplished in our project, which was very encouraging. At the beginning, we were only able to generate the shortest route between locations, but then we were able to add hotels and the transportation options to make our generator more dynamic. I also want to thank Ashley for making all those beautiful maps, which built the most important foundation of the whole project. 
+
+The second thing that I'm also really proud of is our front-end. We managed to build a functioning webapp from scratch to demonstrate what we've accomplished for our project. I had some limited experience with html and css to build static website during hackathons but I had never done anything close to this. In order to connect to the database we scraped from [Tripadvisor](https://www.tripadvisor.com/) and the geomaps, we've tried to learn `PHP` first. Although we successfully connected to the database and it allows users to search for attractions, we had trouble to realize the route generator. We've also tried to learn `Django`, but it was too complicated to grasp within limited time. At the end, we learned to use `flask`, which is also python-based like `Django`, to build our final product. In my biased opinion, it is simple, clean, and beautiful. 
 
 ### Proposal v.s. Final Project
 
