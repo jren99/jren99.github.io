@@ -47,19 +47,19 @@ Because of lack of experience, we had to self-learn most of the time. As a resul
 
 ### Things I've Learned 
 
-- `Github`
+#### Github
 
 I used Github for projects and Hackathons before, but I wasn't comfortable using it. Through this experience, I now truly understand the advantage and convenience of Github, especially for collaborations with others. Because we constantly use it to update our progress on the project, I've become more and more comfortable using Github. 
 
-- Web Development
+#### Web Development
 
 Like I mentioned before, I had previous experiences building webpages during Hackathon, but only with front-end. This is the first time for me to build something complete and functional (instead of static). I was able to learn and understand more of the structure of front and back ends. It was also a great experience to learn something about `php`, even though we decided not to use it at the end. I learned how to write and strucutre `flask`. I had lots of fun working with Jingxuan on Zoom to figure out together how to make things work on flask.
 
-- Database Query
+#### Database Query
 
 I've learned SQL query and practiced in different assignments, but it feels very different when it comes to a real project, because the dataset doesn't look as nice and somehow I just couldn't wrap my head around data query in web development at the beginning. It feels very straight forward now but I had a difficult time understanding how to take the user input as part of the query and display the output on the webpage. 
 
-- Stay in it when it gets tough. 
+#### Stay in it when it gets tough. 
 
 It does get exhausing when I get stuck, sometimes for days. However, it's important to have faith in yourself and know that you will figure it out eventually. Don't quit. If you can't solve it and start feeling anxious, take a break. Play with your cat (or dog). Take a walk. Listen to Taylor Swift. Watch an epsiode of your favorite TV show. And when you feel better, come back to your computer to resume your work. 
 
