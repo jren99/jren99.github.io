@@ -51,7 +51,7 @@ Because of lack of experience, we had to self-learn most of the time. As a resul
 
 I used Github for projects and Hackathons before, but I wasn't comfortable using it. Through this experience, I now truly understand the advantage and convenience of Github, especially for collaborations with others. Because we constantly use it to update our progress on the project, I've become more and more comfortable using Github. 
 
-- Web development
+- Web Development
 
 Like I mentioned before, I had previous experiences building webpages during Hackathon, but only with front-end. This is the first time for me to build something complete and functional (instead of static). I was able to learn and understand more of the structure of front and back ends. It was also a great experience to learn something about `php`, even though we decided not to use it at the end. I learned how to write and strucutre `flask`. I had lots of fun working with Jingxuan on Zoom to figure out together how to make things work on flask.
 
