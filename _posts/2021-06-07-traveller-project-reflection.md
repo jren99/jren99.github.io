@@ -7,7 +7,7 @@ What are three things you learned from the experience of completing your project
 
 How will your experience completing this project will help you in your future studies or career? Please be as specific as possible.
 
-For a math student who aspires to be a data scientist, opportunities to collaborate with others to complete a coding project are extremely valuable for me. When I was taking PIC 16B at UCLA, I was very lucky to meet [Ashley Lu]() and [Jingxuan Zhang]() because of our common interests in travelling, especially during this unusual circumstance of Covid 19, and we were able to learn, think, and design this project together, [LA Travel Planner](https://github.com/jren99/pic16b_project), which was not only a programming project that we are all really proud of but also a reflection of what we want to realize in real world using what we've learned in the classroom. I want to take this opportunity to share my experience with you in hopes of motivating you if you are struggling with your own project. 
+For a math student who aspires to be a data scientist, opportunities to collaborate with others to complete a coding project are extremely valuable for me. When I was taking PIC 16B at UCLA, I was very lucky to meet [Ashley Lu]() and [Jingxuan Zhang](https://stancyzhang.github.io/Reflection-Blog-Post/) because of our common interests in travelling, especially during this unusual circumstance of Covid 19, and we were able to learn, think, and design this project together, [LA Travel Planner](https://github.com/jren99/pic16b_project), which was not only a programming project that we are all really proud of but also a reflection of what we want to realize in real world using what we've learned in the classroom. I want to take this opportunity to share my experience with you in hopes of motivating you if you are struggling with your own project. 
 
 ### Project Overview
 
@@ -52,4 +52,13 @@ Because of lack of experience, we had to self-learn most of the time. As a resul
 ### Things I've Learned 
 
 1. `Github`
-I 
+I used Github for projects and Hackathons before, but I wasn't comfortable using it. Through this experience, I now truly understand the advantage and convenience of Github, especially for collaborations with others. Because we constantly use it to update our progress on the project, I've become more and more comfortable using Github. 
+
+2. Web development
+Like I mentioned before, I had previous experiences building webpages during Hackathon, but only with front-end. This is the first time for me to build something complete and functional (instead of static). I was able to learn and understand more of the structure of front and back ends. It was also a great experience to learn something about `php`, even though we decided not to use it at the end. I learned how to write and strucutre `flask`. I had lots of fun working with Jingxuan on Zoom to figure out together how to make things work on flask.
+
+3. Database Query
+I've learned SQL query and practiced in different assignments, but it feels very different when it comes to a real project, because the dataset doesn't look as nice and somehow I just couldn't wrap my head around data query in web development at the beginning. It feels very straight forward now but I had a difficult time understanding how to take the user input as part of the query and display the output on the webpage. 
+
+4. Stay in it when it gets tough. 
+It does get exhausing when I get stuck, sometimes for days. However, it's important to have faith in yourself and know that you will figure it out eventually. Don't quit. If you can't solve it and start feeling anxious, take a break. Play with your cat (or dog). Take a walk. Listen to Taylor Swift. Watch an epsiode of your favorite TV show. And when you feel better, come back to your computer to resume your work. 
