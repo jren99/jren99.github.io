@@ -5,8 +5,6 @@ title: Blog Post 4
 
 What are two things you would suggest doing to further improve your project? (You are not responsible for doing those things.) 
 
-How does what you achieved compare to what you set out to do in your proposal? (if you didn't complete everything in your proposal, that's fine!)
-
 What are three things you learned from the experience of completing your project? Data analysis techniques? Python packages? Git + GitHub? Etc? 
 
 How will your experience completing this project will help you in your future studies or career? Please be as specific as possible.
@@ -45,4 +43,10 @@ The second thing that I'm also really proud of is our front-end. We managed to b
 
 ### Proposal v.s. Final Project
 
+Of course, there were things we wanted to accomplish but weren't able to fully deliver. In the original proposal, we want to create such a travel planning tool for travellers to California, possibly to the entire United States, even to the whole world. Quite ambitious, right? However, because the scraping method wasn't efficient enough, we decided to focus on travellers to LA and created database for attractions, hotels, and restaurants in LA. Initially, we also wanted to generate attractions, hotels, and restaurants recommendations based on the city the users input. However, because we limited the city to Los Angeles, we decided to use keyword searching instead, which allows users to filter results based on types or ratings. However, I'm very pleased with what we've accomplished. 
+
+Although we limited our users to a much smaller scope, we almost realized all functionalities in our originial proposal. We can successfully display the optimal routes for traveling between the sightseeing locations and the hotel location and the estimate travel time based on the transportation. We also implemented a webapp to integrate all functionalities. Overall, I think we've achieved what we planned at the beginning.
+
 ### Limitations 
+
+Because of lack of experience, we had to self-learn most of the time. As a result, there are still a lot more to improve for our project. 
