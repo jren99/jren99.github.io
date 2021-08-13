@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Blog Post 2
+title: Blog Post 2 - Spectral Decomposition
 ---
 
 In this blog post, we will learn to partition graphs by spectral decomposition.

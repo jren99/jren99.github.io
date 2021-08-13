@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Blog Post 3
+title: Blog Post 3 - Fake News Classifier with Tensorflow
 ---
 
 With the rapid development of technology, we are exposed to large amount of all kinds of information all the time. Our generation knows that how difficult it is to extract effective information because of all the "fake" news. Wouldn't it be nice if we can create an algorithm that helps us detect fake news?
