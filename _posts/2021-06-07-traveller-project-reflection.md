@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Blog Post 4 - PIC16B Project Reflection
+title: Blog Post 5 - PIC16B Project Reflection
 ---
 
 For a math student who aspires to be a data scientist, opportunities to collaborate with others to complete a coding project are extremely valuable for me. When I was taking PIC 16B at UCLA, I was very lucky to meet [Ashley Lu](https://ashley-lu.github.io/reflection-blog-post/) and [Jingxuan Zhang](https://stancyzhang.github.io/Reflection-Blog-Post/) because of our common interests in travelling, especially during this unusual circumstance of Covid 19, and we were able to learn, think, and design this project together, [LA Travel Planner](https://github.com/jren99/pic16b_project), which was not only a programming project that we are all really proud of but also a reflection of what we want to realize in the real world using what we've learned in the classroom. I want to take this opportunity to share my experience with you in hopes of motivating you if you are struggling with your own project. 
